@@ -1,5 +1,6 @@
 package hello
 
+import org.http4k.core.Headers
 import org.http4k.core.Method.GET
 import org.http4k.core.Request
 import org.http4k.core.Response
@@ -70,5 +71,42 @@ class HelloTest {
         assertEquals(expected3, result3)
         assertEquals(expected4, result4)
         assertEquals(expected5, result5)
+    }
+
+    @Test
+    fun `echo_headers returns all request headers`() {
+        val expected: Response = Response(OK).body("Test header: Test value")
+        val result: Response = app(Request(GET, "/echo_headers").header("Test header", "Test value"))
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `echo_headers returns multiple headers`() {
+        val expected: Response = Response(OK).body("""
+            Test header 1: Test value 1
+            Test header 2: Test value 2
+        """.trimIndent())
+        val result: Response = app(Request(GET, "/echo_headers")
+            .header("Test header 1", "Test value 1")
+            .header("Test header 2", "Test value 2")
+        )
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `echo_headers handles the example response`() {
+        val expected: Response = Response(OK).body("""
+            Accept: text/html
+            Accept-Encoding: gzip
+            Connection: keep-alive
+            Accept-Language: en-GB
+        """.trimIndent())
+        val result: Response = app(Request(GET, "echo_headers")
+            .header("Accept", "text/html")
+            .header("Accept-Encoding", "gzip")
+            .header("Connection", "keep-alive")
+            .header("Accept-Language", "en-GB")
+        )
+        assertEquals(expected, result)
     }
 }

@@ -29,6 +29,12 @@ val app: HttpHandler = routes(
         } else {
             Response(OK).body(languages[req.path("lang")].toString())
         }
+    },
+
+    "/echo_headers" bind GET to { req: Request ->
+        Response(OK).body(req.headers.map {
+            "${it.first}: ${it.second}"
+        }.joinToString("\n"))
     }
 )
 
