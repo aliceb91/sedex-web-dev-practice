@@ -13,8 +13,12 @@ import org.http4k.server.SunHttp
 import org.http4k.server.asServer
 
 val app: HttpHandler = routes(
-    "/hello" bind GET to {
-        Response(OK).body("Hello")
+    "/hello" bind GET to { req: Request ->
+        if (req.query("name") != null) {
+            Response(OK).body("Hello ${req.query("name")}")
+        } else {
+            Response(OK).body("Hello")
+        }
     }
 )
 
