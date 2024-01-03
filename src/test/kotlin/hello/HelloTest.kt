@@ -1,12 +1,13 @@
 package hello
 
-import org.http4k.core.Headers
 import org.http4k.core.Method.GET
 import org.http4k.core.Request
 import org.http4k.core.Response
 import org.http4k.core.Status
 import org.http4k.core.Status.Companion.OK
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.http4k.format.Jackson.asJsonValue
+import org.http4k.format.Jackson.asJsonObject
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class HelloTest {
@@ -101,12 +102,40 @@ class HelloTest {
             Connection: keep-alive
             Accept-Language: en-GB
         """.trimIndent())
-        val result: Response = app(Request(GET, "echo_headers")
+        val result: Response = app(Request(GET, "/echo_headers")
             .header("Accept", "text/html")
             .header("Accept-Encoding", "gzip")
             .header("Connection", "keep-alive")
             .header("Accept-Language", "en-GB")
         )
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `echo_headers returns a json object when given the appropriate content type`() {
+        val expected: String = "application/json; charset=utf-8"
+        val result: String = app(Request(GET, "/echo_headers")
+            .header("Content-Type", "application/json")
+        ).header("Content-type").toString()
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `echo_headers returns a json object when the content type header is given`() {
+        val expected: String = listOf(
+            "Accept-Encoding" to "gzip".asJsonValue(),
+            "Accept" to "text/html".asJsonValue(),
+            "Accept-Language" to "en-GB".asJsonValue(),
+            "Connection" to "keep-alive".asJsonValue(),
+            "Content-Type" to "application/json".asJsonValue()
+        ).asJsonObject().toString()
+        val result: String = app(Request(GET, "/echo_headers")
+            .header("Accept-Encoding", "gzip")
+            .header("Accept", "text/html")
+            .header("Accept-Language", "en-GB")
+            .header("Connection", "keep-alive")
+            .header("Content-Type", "application/json")
+        ).body.toString()
         assertEquals(expected, result)
     }
 }

@@ -12,6 +12,11 @@ import org.http4k.routing.routes
 import org.http4k.server.SunHttp
 import org.http4k.server.asServer
 import org.http4k.routing.path
+import org.http4k.core.Body
+import org.http4k.core.with
+import org.http4k.format.Jackson.asJsonObject
+import org.http4k.format.Jackson.asJsonValue
+import org.http4k.format.Jackson.json
 
 val app: HttpHandler = routes(
     "/{lang}/hello" bind GET to { req: Request ->
@@ -32,9 +37,17 @@ val app: HttpHandler = routes(
     },
 
     "/echo_headers" bind GET to { req: Request ->
-        Response(OK).body(req.headers.map {
-            "${it.first}: ${it.second}"
-        }.joinToString("\n"))
+        if (req.header("Content-Type") == "application/json") {
+            Response(OK).with(
+                Body.json().toLens() of req.headers.map {
+                        it.first to it.second.asJsonValue()
+                    }.asJsonObject()
+            )
+        } else {
+            Response(OK).body(req.headers.map {
+                "${it.first}: ${it.second}"
+            }.joinToString("\n"))
+        }
     }
 )
 
