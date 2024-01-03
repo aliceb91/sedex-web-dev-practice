@@ -138,4 +138,23 @@ class HelloTest {
         ).body.toString()
         assertEquals(expected, result)
     }
+
+    @Test
+    fun `echo_headers returns headers with a given prefix when specified`() {
+        val expected: Response = Response(OK).headers(
+            listOf(
+                Pair("X-Echo-Accept-Encoding", "gzip"),
+                Pair("X-Echo-Accept", "text/html"),
+                Pair("X-Echo-Accept-Language", "en-GB"),
+                Pair("X-Echo-Connection", "keep-alive")
+            )
+        )
+        val result: Response = app(Request(GET, "/echo_headers?as_response_headers_with_prefix=X-Echo-")
+            .header("Accept-Encoding", "gzip")
+            .header("Accept", "text/html")
+            .header("Accept-Language", "en-GB")
+            .header("Connection", "keep-alive")
+        )
+        assertEquals(expected, result)
+    }
 }

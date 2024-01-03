@@ -37,7 +37,13 @@ val app: HttpHandler = routes(
     },
 
     "/echo_headers" bind GET to { req: Request ->
-        if (req.header("Content-Type") == "application/json") {
+        if (req.query("as_response_headers_with_prefix") != null) {
+            Response(OK).headers(
+                req.headers.map {
+                    Pair("${req.query("as_response_headers_with_prefix")}${it.first}", it.second)
+                }
+            )
+        } else if (req.header("Content-Type") == "application/json") {
             Response(OK).with(
                 Body.json().toLens() of req.headers.map {
                         it.first to it.second.asJsonValue()
