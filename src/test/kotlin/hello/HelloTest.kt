@@ -15,14 +15,14 @@ class HelloTest {
     @Test
     fun `it returns a 200 OK status code`() {
         val expected: Status = OK
-        val result = app(Request(GET, "/en-US/hello")).status
+        val result = app(Request(GET, "/hello")).status
         assertEquals(expected, result)
     }
 
     @Test
     fun `it returns the text Hello when called`() {
         val expected: String = "Hello"
-        val result: String = app(Request(GET, "/en-US/hello")).body.toString()
+        val result: String = app(Request(GET, "/hello")).body.toString()
         assertEquals(expected, result)
     }
 
@@ -30,8 +30,8 @@ class HelloTest {
     fun `it returns Hello name when given name parameters with OK status codes`() {
         val expected1: Response = Response(OK).body("Hello Alice")
         val expected2: Response = Response(OK).body("Hello Jess")
-        val result1: Response= app(Request(GET, "/en-US/hello?name=Alice"))
-        val result2: Response = app(Request(GET, "/en-US/hello?name=Jess"))
+        val result1: Response= app(Request(GET, "/hello?name=Alice"))
+        val result2: Response = app(Request(GET, "/hello?name=Jess"))
         assertEquals(expected1, result1)
         assertEquals(expected2, result2)
     }
@@ -43,11 +43,11 @@ class HelloTest {
         val expected3: Response = Response(OK).body("G'day Alice")
         val expected4: Response = Response(OK).body("Salve Alice")
         val expected5: Response = Response(OK).body("Alright, Alice?")
-        val result1: Response = app(Request(GET, "/en-US/hello?name=Alice"))
-        val result2: Response = app(Request(GET, "/fr-FR/hello?name=Alice"))
-        val result3: Response = app(Request(GET, "/en-AU/hello?name=Alice"))
-        val result4: Response = app(Request(GET, "/it-IT/hello?name=Alice"))
-        val result5: Response = app(Request(GET, "/en-GB/hello?name=Alice"))
+        val result1: Response = app(Request(GET, "/hello?name=Alice").header("Accept-Language", "en-US"))
+        val result2: Response = app(Request(GET, "/hello?name=Alice").header("Accept-Language", "fr-FR"))
+        val result3: Response = app(Request(GET, "/hello?name=Alice").header("Accept-Language", "en-AU"))
+        val result4: Response = app(Request(GET, "/hello?name=Alice").header("Accept-Language", "it-IT"))
+        val result5: Response = app(Request(GET, "/hello?name=Alice").header("Accept-Language", "en-GB"))
         assertEquals(expected1, result1)
         assertEquals(expected2, result2)
         assertEquals(expected3, result3)
@@ -62,11 +62,11 @@ class HelloTest {
         val expected3: Response = Response(OK).body("G'day")
         val expected4: Response = Response(OK).body("Salve")
         val expected5: Response = Response(OK).body("Alright?")
-        val result1: Response = app(Request(GET, "/en-US/hello"))
-        val result2: Response = app(Request(GET, "/fr-FR/hello"))
-        val result3: Response = app(Request(GET, "/en-AU/hello"))
-        val result4: Response = app(Request(GET, "/it-IT/hello"))
-        val result5: Response = app(Request(GET, "/en-GB/hello"))
+        val result1: Response = app(Request(GET, "/hello").header("Accept-Language", "en-US"))
+        val result2: Response = app(Request(GET, "/hello").header("Accept-Language", "fr-FR"))
+        val result3: Response = app(Request(GET, "/hello").header("Accept-Language", "en-AU"))
+        val result4: Response = app(Request(GET, "/hello").header("Accept-Language", "it-IT"))
+        val result5: Response = app(Request(GET, "/hello").header("Accept-Language", "en-GB"))
         assertEquals(expected1, result1)
         assertEquals(expected2, result2)
         assertEquals(expected3, result3)

@@ -19,7 +19,7 @@ import org.http4k.format.Jackson.asJsonValue
 import org.http4k.format.Jackson.json
 
 val app: HttpHandler = routes(
-    "/{lang}/hello" bind GET to { req: Request ->
+    "/hello" bind GET to { req: Request ->
         val languages: Map<String, out String> = mapOf(
             "en-US" to "Hello",
             "fr-FR" to "Bonjour",
@@ -27,12 +27,13 @@ val app: HttpHandler = routes(
             "it-IT" to "Salve",
             "en-GB" to "Alright?"
         )
-        if (req.query("name") != null && req.path("lang") == "en-GB") {
-            Response(OK).body("${languages["en-GB"].toString().dropLast(1)}, ${req.query("name")}?")
+        val currentLang: String = languages[req.header("Accept-Language")] ?: "Hello"
+        if (req.query("name") != null && req.header("Accept-Language") == "en-GB") {
+            Response(OK).body("${currentLang.dropLast(1)}, ${req.query("name")}?")
         } else if (req.query("name") != null) {
-            Response(OK).body("${languages[req.path("lang")]} ${req.query("name")}")
+            Response(OK).body("$currentLang ${req.query("name")}")
         } else {
-            Response(OK).body(languages[req.path("lang")].toString())
+            Response(OK).body(currentLang)
         }
     },
 
