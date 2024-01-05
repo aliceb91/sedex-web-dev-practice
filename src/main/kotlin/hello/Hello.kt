@@ -17,6 +17,7 @@ import org.http4k.core.with
 import org.http4k.format.Jackson.asJsonObject
 import org.http4k.format.Jackson.asJsonValue
 import org.http4k.format.Jackson.json
+import org.http4k.server.Http4kServer
 
 val app: HttpHandler = routes(
     "/hello" bind GET to { req: Request ->
@@ -58,10 +59,11 @@ val app: HttpHandler = routes(
     }
 )
 
-fun main() {
-    val printingApp: HttpHandler = PrintRequest().then(app)
+fun helloServer(): Http4kServer {
 
-    val server = printingApp.asServer(SunHttp(9000)).start()
+    val server = app.asServer(SunHttp(9000))
 
     println("Server started on " + server.port())
+
+    return server
 }

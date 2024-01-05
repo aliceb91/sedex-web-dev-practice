@@ -7,7 +7,9 @@ import org.http4k.core.Status
 import org.http4k.core.Status.Companion.OK
 import org.http4k.format.Jackson.asJsonValue
 import org.http4k.format.Jackson.asJsonObject
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class HelloTest {
@@ -136,6 +138,8 @@ class HelloTest {
             .header("Connection", "keep-alive")
             .header("Content-Type", "application/json")
         ).body.toString()
+        println(expected)
+        println(result)
         assertEquals(expected, result)
     }
 
