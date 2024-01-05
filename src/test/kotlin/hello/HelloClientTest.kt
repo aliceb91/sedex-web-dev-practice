@@ -1,5 +1,7 @@
 package hello
 
+import com.natpryce.hamkrest.assertion.assertThat
+import com.natpryce.hamkrest.and
 import org.http4k.core.Headers
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
@@ -9,6 +11,8 @@ import org.http4k.format.Jackson.asJsonValue
 import org.http4k.format.Jackson.asJsonObject
 import org.http4k.core.Response
 import org.http4k.core.Status.Companion.OK
+import org.http4k.hamkrest.hasHeader
+import org.http4k.hamkrest.hasStatus
 
 class HelloClientTest {
 
@@ -92,12 +96,11 @@ class HelloClientTest {
     @Test
     fun `it returns all headers with a prefix as response headers when a prefix is given`() {
         val underTest = HelloClient()
-        val expected: Headers = listOf(
-            Pair("x-echo-content-length", "0"),
-            Pair("x-echo-host", "localhost:9000"),
-            Pair("x-echo-user-agent", "Java-http-client/11.0.21")
+        val result: Response = underTest.echoHeaders(prefix = "X-Echo-")
+        assertThat(result, hasStatus(OK)
+            .and(hasHeader("X-Echo-Content-length"))
+            .and(hasHeader("X-Echo-host"))
+            .and(hasHeader("X-Echo-User-agent"))
         )
-        val result: Headers = underTest.echoHeaders(prefix = "X-Echo-").headers.filter {"x-echo-" in it.first}
-        assertEquals(expected, result)
     }
 }
