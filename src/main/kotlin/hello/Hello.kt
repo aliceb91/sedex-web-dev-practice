@@ -70,6 +70,7 @@ fun helloServer(): Http4kServer {
     return server
 }
 
+// Use main function for manual testing only
 fun main() {
 
     val printingApp: HttpHandler = PrintRequest().then(app)
