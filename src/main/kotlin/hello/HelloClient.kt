@@ -19,8 +19,9 @@ class HelloClient {
         return response.bodyString()
     }
 
-    fun echoHeaders(prefix: String = ""): Response {
+    fun echoHeaders(prefix: String = ""): String {
         return client(Request(GET, "http://localhost:9000/echo_headers"))
+            .body.toString()
     }
 
     fun echoHeadersJson(): String {

@@ -76,7 +76,7 @@ class HelloClientTest {
             User-agent: Java-http-client/11.0.21
             Content-length: 0
         """.trimIndent()
-        val result: String = underTest.echoHeaders().body.toString()
+        val result: String = underTest.echoHeaders()
         assertEquals(expected, result)
     }
 
