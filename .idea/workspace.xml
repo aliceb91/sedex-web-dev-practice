@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="095e9350-3688-4d00-92d2-c479f14fa98c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/hello/HelloClient.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/hello/HelloClientTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hello/HelloClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hello/HelloClient.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +107,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="HelloTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="HelloClientTest.it returns all headers as a json object when indicated" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -123,7 +120,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;hello.HelloTest&quot;" />
+            <option value="&quot;hello.HelloClientTest.it returns all headers as a json object when indicated&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -134,7 +131,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="HelloTest.echo_headers returns headers with a given prefix when specified" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="HelloClientTest.it returns all headers with a prefix as response headers when a prefix is given" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -147,7 +144,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;hello.HelloTest.echo_headers returns headers with a given prefix when specified&quot;" />
+            <option value="&quot;hello.HelloClientTest.it returns all headers with a prefix as response headers when a prefix is given&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -158,20 +155,37 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="HelloKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="hello.HelloKt" />
-      <module name="sedex-web-dev-practice.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="HelloTest.echo_headers returns a json object when the content type header is given" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;hello.HelloTest.echo_headers returns a json object when the content type header is given&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.HelloClientTest" />
-        <item itemvalue="Kotlin.HelloKt" />
         <item itemvalue="Gradle.HelloClientTest.it returns Hello when hello is called with no parameters" />
-        <item itemvalue="Gradle.HelloTest" />
-        <item itemvalue="Gradle.HelloTest.echo_headers returns headers with a given prefix when specified" />
+        <item itemvalue="Gradle.HelloClientTest.it returns all headers with a prefix as response headers when a prefix is given" />
+        <item itemvalue="Gradle.HelloClientTest.it returns all headers as a json object when indicated" />
+        <item itemvalue="Gradle.HelloTest.echo_headers returns a json object when the content type header is given" />
       </list>
     </recent_temporary>
   </component>
@@ -188,10 +202,23 @@
       <workItem from="1704374318298" duration="4426000" />
       <workItem from="1704382584631" duration="2241000" />
       <workItem from="1704385170223" duration="1797000" />
+      <workItem from="1704445976160" duration="12802000" />
+      <workItem from="1704703924989" duration="840000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

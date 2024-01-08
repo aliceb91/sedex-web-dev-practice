@@ -1,5 +1,6 @@
 package hello
 
+import com.fasterxml.jackson.databind.JsonNode
 import org.http4k.client.JavaHttpClient
 import org.http4k.core.*
 import org.http4k.core.Method.GET
@@ -18,15 +19,17 @@ class HelloClient {
         return response.bodyString()
     }
 
-    fun echoHeaders(asJson: Boolean = false, prefix: String = ""): Response {
-        var requestString: String = "http://localhost:9000/echo_headers"
-        if (prefix != "") {
-            requestString += "?as_response_headers_with_prefix=$prefix"
-            return  client(Request(GET, requestString))
-        } else if (asJson) {
-            return client(Request(GET, requestString).header("Content-Type", "application/json"))
-        } else {
-            return client(Request(GET, requestString))
-        }
+    fun echoHeaders(prefix: String = ""): Response {
+        return client(Request(GET, "http://localhost:9000/echo_headers"))
+    }
+
+    fun echoHeadersJson(): String {
+        return client(Request(GET, "http://localhost:9000/echo_headers")
+            .header("Content-type", "application/json"))
+            .body.toString()
+    }
+
+    fun echoHeadersPrefix(prefix: String): Response {
+        return client(Request(GET, "http://localhost:9000/echo_headers?as_response_headers_with_prefix=$prefix"))
     }
 }

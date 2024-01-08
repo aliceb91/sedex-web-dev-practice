@@ -89,14 +89,14 @@ class HelloClientTest {
             "Content-type" to "application/json".asJsonValue(),
             "Content-length" to "0".asJsonValue()
         ).asJsonObject().toString()
-        val result: String = underTest.echoHeaders(asJson = true).body.toString()
+        val result: String = underTest.echoHeadersJson()
         assertEquals(expected, result)
     }
 
     @Test
     fun `it returns all headers with a prefix as response headers when a prefix is given`() {
         val underTest = HelloClient()
-        val result: Response = underTest.echoHeaders(prefix = "X-Echo-")
+        val result: Response = underTest.echoHeadersPrefix(prefix = "X-Echo-")
         assertThat(result, hasStatus(OK)
             .and(hasHeader("X-Echo-Content-length"))
             .and(hasHeader("X-Echo-host"))
