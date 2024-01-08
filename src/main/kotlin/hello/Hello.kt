@@ -1,5 +1,6 @@
 package hello
 
+import org.http4k.client.JavaHttpClient
 import org.http4k.core.HttpHandler
 import org.http4k.core.Method.GET
 import org.http4k.core.Request
@@ -14,6 +15,7 @@ import org.http4k.server.asServer
 import org.http4k.routing.path
 import org.http4k.core.Body
 import org.http4k.core.with
+import org.http4k.filter.DebuggingFilters
 import org.http4k.format.Jackson.asJsonObject
 import org.http4k.format.Jackson.asJsonValue
 import org.http4k.format.Jackson.json
@@ -66,4 +68,13 @@ fun helloServer(): Http4kServer {
     println("Server started on " + server.port())
 
     return server
+}
+
+fun main() {
+
+    val printingApp: HttpHandler = PrintRequest().then(app)
+
+    val server = printingApp.asServer(SunHttp(9000)).start()
+
+    println("Server started on " + server.port())
 }
