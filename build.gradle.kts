@@ -23,6 +23,7 @@ dependencies {
     implementation("org.http4k:http4k-format-moshi")
     implementation("org.http4k:http4k-format-kotlinx-serialization")
     implementation("org.http4k:http4k-testing-hamkrest")
+    testImplementation("org.mockito:mockito-core:3.3.3")
 }
 
 tasks.test {
