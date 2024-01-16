@@ -30,13 +30,13 @@ val app: HttpHandler = routes(
             "it-IT" to "Salve",
             "en-GB" to "Alright?"
         )
-        val currentLang: String = languages[req.header("Accept-Language")] ?: "Hello"
+        val currentGreeting: String = languages[req.header("Accept-Language")] ?: "Hello"
         if (req.query("name") != null && req.header("Accept-Language") == "en-GB") {
-            Response(OK).body("${currentLang.dropLast(1)}, ${req.query("name")}?")
+            Response(OK).body("${currentGreeting.dropLast(1)}, ${req.query("name")}?")
         } else if (req.query("name") != null) {
-            Response(OK).body("$currentLang ${req.query("name")}")
+            Response(OK).body("$currentGreeting ${req.query("name")}")
         } else {
-            Response(OK).body(currentLang)
+            Response(OK).body(currentGreeting)
         }
     },
 

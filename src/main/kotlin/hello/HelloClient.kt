@@ -23,9 +23,16 @@ class HelloClient(baseUrl: String) {
         }
     }
 
-    fun echoHeaders(prefix: String = ""): String {
+    fun echoHeaders(): Map<String, String> {
         return client(Request(GET, "$baseUrl/echo_headers"))
-            .body.toString()
+            .body
+            .toString()
+            .split("\n")
+            .map {
+                val splitList = it.split(": ")
+                Pair(splitList[0], splitList[1])
+            }
+            .toMap()
     }
 
     fun echoHeadersJson(): String {

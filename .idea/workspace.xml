@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="095e9350-3688-4d00-92d2-c479f14fa98c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/hello/HelloClientUnitTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +57,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Kotlin.HelloKt">
+  <component name="RunManager" selected="Gradle.HelloClientTest">
     <configuration name="HelloClientTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -165,8 +163,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.HelloKt" />
         <item itemvalue="Gradle.HelloClientTest" />
+        <item itemvalue="Kotlin.HelloKt" />
         <item itemvalue="Gradle.HelloClientTest.it returns all headers as a string when echoHeaders is called" />
         <item itemvalue="Gradle.HelloClientTest.it returns Hello when hello is called with no parameters" />
         <item itemvalue="Gradle.HelloClientTest.it returns all headers with a prefix as response headers when a prefix is given" />
@@ -187,7 +185,9 @@
       <workItem from="1704382584631" duration="2241000" />
       <workItem from="1704385170223" duration="1797000" />
       <workItem from="1704445976160" duration="12802000" />
-      <workItem from="1704703924989" duration="6964000" />
+      <workItem from="1704703924989" duration="10517000" />
+      <workItem from="1704791760671" duration="599000" />
+      <workItem from="1705392653271" duration="5129000" />
     </task>
     <servers />
   </component>

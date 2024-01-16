@@ -69,14 +69,14 @@ class HelloClientTest {
     }
 
     @Test
-    fun `it returns all headers as a string when echoHeaders is called`() {
+    fun `it returns all headers when echoHeaders is called`() {
         val underTest = HelloClient("http://localhost:9000")
-        val expected: String = """
-            Host: localhost:9000
-            User-agent: Java-http-client/11.0.21
-            Content-length: 0
-        """.trimIndent()
-        val result: String = underTest.echoHeaders()
+        val expected: Map<String, String> =mapOf(
+            "Host" to "localhost:9000",
+            "User-agent" to "Java-http-client/11.0.21",
+            "Content-length" to "0"
+        )
+        val result: Map<String, String> = underTest.echoHeaders()
         assertEquals(expected, result)
     }
 
