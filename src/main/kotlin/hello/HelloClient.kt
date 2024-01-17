@@ -23,7 +23,17 @@ class HelloClient(baseUrl: String) {
         }
     }
 
-    fun echoHeaders(): Map<String, String> {
+    fun echoHeaders(prefix: String ="", json: Boolean = false): Map<String, String> {
+        if (prefix != "") {
+            return echoHeadersPrefix(prefix)
+        } else if (json == true) {
+            return echoHeadersJson()
+        } else {
+            return echoHeadersBase()
+        }
+    }
+
+    fun echoHeadersBase(): Map<String, String> {
         return client(Request(GET, "$baseUrl/echo_headers"))
             .body
             .toString()
@@ -35,13 +45,30 @@ class HelloClient(baseUrl: String) {
             .toMap()
     }
 
-    fun echoHeadersJson(): String {
+    fun echoHeadersJson(): Map<String, String> {
         return client(Request(GET, "$baseUrl/echo_headers")
             .header("Content-type", "application/json"))
-            .body.toString()
+            .body
+            .toString()
+            .substring(1)
+            .dropLast(1)
+            .split(",")
+            .map {
+                val splitList = it.split(":", limit = 2)
+                Pair(
+                    splitList[0].substring(1).dropLast(1),
+                    splitList[1].substring(1).dropLast(1)
+                )
+            }
+            .toMap()
     }
 
-    fun echoHeadersPrefix(prefix: String): Response {
+    fun echoHeadersPrefix(prefix: String): Map<String, String> {
         return client(Request(GET, "$baseUrl/echo_headers?as_response_headers_with_prefix=$prefix"))
+            .headers
+            .map {
+                Pair(it.first.lowercase(), it.second.toString().lowercase())
+            }
+            .toMap()
     }
 }

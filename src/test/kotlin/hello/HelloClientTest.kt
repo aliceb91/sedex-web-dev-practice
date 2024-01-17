@@ -83,24 +83,22 @@ class HelloClientTest {
     @Test
     fun `it returns all headers as a json object when indicated`() {
         val underTest = HelloClient("http://localhost:9000")
-        val expected: String = listOf(
-            "Host" to "localhost:9000".asJsonValue(),
-            "User-agent" to "Java-http-client/11.0.21".asJsonValue(),
-            "Content-type" to "application/json".asJsonValue(),
-            "Content-length" to "0".asJsonValue()
-        ).asJsonObject().toString()
-        val result: String = underTest.echoHeadersJson()
+        val expected: Map<String, String> = mapOf(
+            "Host" to "localhost:9000",
+            "User-agent" to "Java-http-client/11.0.21",
+            "Content-type" to "application/json",
+            "Content-length" to "0"
+        )
+        val result: Map<String, String> = underTest.echoHeaders(json = true)
         assertEquals(expected, result)
     }
 
     @Test
     fun `it returns all headers with a prefix as response headers when a prefix is given`() {
         val underTest = HelloClient("http://localhost:9000")
-        val result: Response = underTest.echoHeadersPrefix(prefix = "X-Echo-")
-        assertThat(result, hasStatus(OK)
-            .and(hasHeader("X-Echo-Content-length"))
-            .and(hasHeader("X-Echo-host"))
-            .and(hasHeader("X-Echo-User-agent"))
-        )
+        val result: Map<String, String> = underTest.echoHeaders(prefix = "X-Echo-")
+        assertEquals(true, result.containsKey("x-echo-content-length"))
+        assertEquals(true, result.containsKey("x-echo-host"))
+        assertEquals(true, result.containsKey("x-echo-user-agent"))
     }
 }

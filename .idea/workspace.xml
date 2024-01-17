@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="095e9350-3688-4d00-92d2-c479f14fa98c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="095e9350-3688-4d00-92d2-c479f14fa98c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,7 +128,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="HelloClientTest.it returns all headers with a prefix as response headers when a prefix is given" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="HelloTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -143,7 +141,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;hello.HelloClientTest.it returns all headers with a prefix as response headers when a prefix is given&quot;" />
+            <option value="&quot;hello.HelloTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -164,10 +162,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.HelloClientTest" />
-        <item itemvalue="Kotlin.HelloKt" />
         <item itemvalue="Gradle.HelloClientTest.it returns all headers as a string when echoHeaders is called" />
+        <item itemvalue="Gradle.HelloTest" />
+        <item itemvalue="Kotlin.HelloKt" />
         <item itemvalue="Gradle.HelloClientTest.it returns Hello when hello is called with no parameters" />
-        <item itemvalue="Gradle.HelloClientTest.it returns all headers with a prefix as response headers when a prefix is given" />
       </list>
     </recent_temporary>
   </component>
@@ -187,7 +185,7 @@
       <workItem from="1704445976160" duration="12802000" />
       <workItem from="1704703924989" duration="10517000" />
       <workItem from="1704791760671" duration="599000" />
-      <workItem from="1705392653271" duration="5129000" />
+      <workItem from="1705392653271" duration="8186000" />
     </task>
     <servers />
   </component>
